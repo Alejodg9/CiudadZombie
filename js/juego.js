@@ -20,7 +20,17 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
+    new Obstaculo('imagenes/valla_horizontal.png', 150, 420, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 120, 420, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 400, 460, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 400, 380, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 80, 300, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 470, 280, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 765, 150, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 825, 500, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 855, 500, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 500, 380, 30, 15, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 795, 200, 30, 15, 1)
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -116,26 +126,26 @@ Juego.capturarMovimiento = function (tecla) {
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
-    spriteActual = 	'imagenes/auto_rojo_izquierda.png';
+    spriteActual = 'imagenes/auto_rojo_izquierda.png';
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
-    spriteActual = 	'imagenes/auto_rojo_arriba.png';
+    spriteActual = 'imagenes/auto_rojo_arriba.png';
   }
   if (tecla == 'der') {
     movX = velocidad;
-    spriteActual = 	'imagenes/auto_rojo_derecha.png';
+    spriteActual = 'imagenes/auto_rojo_derecha.png';
   }
   if (tecla == 'abajo') {
     movY = velocidad;
-    spriteActual = 	'imagenes/auto_rojo_abajo.png';
+    spriteActual = 'imagenes/auto_rojo_abajo.png';
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
-    
+
     this.jugador.mover(movX, movY, spriteActual);
   }
 };
@@ -152,9 +162,9 @@ Juego.dibujar = function () {
   "Dibujante dibuja al jugador" */
 
   /* Completar */
-  
-    Dibujante.dibujarEntidad(this.jugador);
-  
+
+  Dibujante.dibujarEntidad(this.jugador);
+
 
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function (obstaculo) {
@@ -210,6 +220,7 @@ Juego.chequearColisiones = function (x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
 
       /*COMPLETAR, obstaculo debe chocar al jugador*/
+      obstaculo.chocar(Jugador);
 
       puedeMoverse = false
     }

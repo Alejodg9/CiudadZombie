@@ -23,6 +23,7 @@ var Jugador = {
 
   perderVidas: function (cantVidas) {
     this.vidas -= cantVidas;
-   }
+  }
 
 }
+   
