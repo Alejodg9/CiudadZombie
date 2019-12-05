@@ -54,9 +54,55 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-
-  ]
-
+    new Enemigo('imagenes/zombie1.png', 220, 420, 10, 10, 1, {
+      desdeX: 0,
+      hastaX: 961,
+      desdeY: 0,
+      hastaY: 580,
+    }),
+    new Enemigo('imagenes/zombie2.png', 230, 220, 10, 10, 1.30, {
+      desdeX: 0,
+      hastaX: 961,
+      desdeY: 0,
+      hastaY: 580,
+    }),
+    new Enemigo('imagenes/zombie3.png', 420, 120, 10, 10, 1.75, {
+      desdeX: 0,
+      hastaX: 961,
+      desdeY: 0,
+      hastaY: 580,
+    }),
+    new Enemigo('imagenes/zombie4.png', 500, 450, 10, 10, 0.5, {
+      desdeX: 0,
+      hastaX: 961,
+      desdeY: 0,
+      hastaY: 580,
+    }),
+    new Enemigo('imagenes/zombie1.png', 830, 420, 10, 10, 2, {
+      desdeX: 0,
+      hastaX: 961,
+      desdeY: 0,
+      hastaY: 580,
+    }),
+    new Enemigo('imagenes/tren_vertical.png', 644, 0, 30, 90, 8, {
+      desdeX: 644,
+      hastaX: 644,
+      desdeY: -90,
+      hastaY: 610,
+    }, 'v'),
+    new Enemigo('imagenes/tren_vertical.png', 678, 0, 30, 90, 5, {
+      desdeX: 644,
+      hastaX: 644,
+      desdeY: -90,
+      hastaY: 610,
+    }, 'v'),
+    new Enemigo('imagenes/tren_horizontal.png', 400, 322, 90, 30, 2, {
+      desdeX: -90,
+      hastaX: 1051,
+      desdeY: 322,
+      hastaY: 322,
+    }, 'h'),
+  ],
 }
 
 /* Se cargan los recursos de las imagenes, para tener un facil acceso
@@ -173,7 +219,7 @@ Juego.dibujar = function () {
 
   // Se recorren los enemigos pintandolos
   this.enemigos.forEach(function (enemigo) {
-    /* Completar */
+    Dibujante.dibujarEntidad(enemigo);
   });
 
   // El dibujante dibuja las vidas del jugador
@@ -191,8 +237,11 @@ Juego.dibujar = function () {
 un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function () {
-  /* COMPLETAR */
-};
+  this.enemigos.forEach(function (enemigo) {
+    // ZombieConductor.prototype.mover();
+    enemigo.mover();
+  });
+  };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
 Si colisiona empieza el ataque el zombie, si no, deja de atacar.
