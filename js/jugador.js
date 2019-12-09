@@ -14,10 +14,17 @@ var Jugador = {
   // Hay que agregar lo que falte al jugador: movimientos, perdida de vidas,
   // y todo lo que haga falta para que cumpla con sus responsabilidades
 
-  mover: function (movX, movY, spriteActual) {
+  mover: function (movX, movY, spriteActual, direccion) {
     this.x += movX;
     this.y += movY;
     this.sprite = spriteActual;
+    if(direccion == "v") {
+      this.ancho = 15;
+      this.alto = 30;
+    }else {
+      this.ancho = 30;
+      this.alto = 15;
+    }
 
   },
 

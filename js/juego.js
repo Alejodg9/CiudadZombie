@@ -54,50 +54,50 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new Enemigo('imagenes/zombie1.png', 220, 420, 10, 10, 1, {
+    new ZombieCaminante('imagenes/zombie1.png', 220, 420, 10, 10, 1, {
       desdeX: 0,
       hastaX: 961,
       desdeY: 0,
       hastaY: 580,
     }),
-    new Enemigo('imagenes/zombie2.png', 230, 220, 10, 10, 1.30, {
+    new ZombieCaminante('imagenes/zombie2.png', 230, 220, 10, 10, 1.30, {
       desdeX: 0,
       hastaX: 961,
       desdeY: 0,
       hastaY: 580,
     }),
-    new Enemigo('imagenes/zombie3.png', 420, 120, 10, 10, 1.75, {
+    new ZombieCaminante('imagenes/zombie3.png', 420, 120, 10, 10, 1.75, {
       desdeX: 0,
       hastaX: 961,
       desdeY: 0,
       hastaY: 580,
     }),
-    new Enemigo('imagenes/zombie4.png', 500, 450, 10, 10, 0.5, {
+    new ZombieCaminante('imagenes/zombie4.png', 500, 450, 10, 10, 0.5, {
       desdeX: 0,
       hastaX: 961,
       desdeY: 0,
       hastaY: 580,
     }),
-    new Enemigo('imagenes/zombie1.png', 830, 420, 10, 10, 2, {
+    new ZombieCaminante('imagenes/zombie1.png', 830, 420, 10, 10, 2, {
       desdeX: 0,
       hastaX: 961,
       desdeY: 0,
       hastaY: 580,
     }),
-    new Enemigo('imagenes/tren_vertical.png', 644, 0, 30, 90, 8, {
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 8, {
       desdeX: 644,
       hastaX: 644,
-      desdeY: -90,
-      hastaY: 610,
+      desdeY: -70,
+      hastaY: 590,
     }, 'v'),
-    new Enemigo('imagenes/tren_vertical.png', 678, 0, 30, 90, 5, {
-      desdeX: 644,
-      hastaX: 644,
-      desdeY: -90,
-      hastaY: 610,
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 5, {
+      desdeX: 678,
+      hastaX: 678,
+      desdeY: -70,
+      hastaY: 590,
     }, 'v'),
-    new Enemigo('imagenes/tren_horizontal.png', 400, 322, 90, 30, 2, {
-      desdeX: -90,
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 2, {
+      desdeX: -70,
       hastaX: 1051,
       desdeY: 322,
       hastaY: 322,
@@ -168,11 +168,13 @@ Juego.capturarMovimiento = function (tecla) {
   var movY = 0;
   var velocidad = this.jugador.velocidad;
   var spriteActual = this.jugador.sprite;
+  var direccion = "v";
 
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
     spriteActual = 'imagenes/auto_rojo_izquierda.png';
+    direccion = "h";
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
@@ -181,6 +183,7 @@ Juego.capturarMovimiento = function (tecla) {
   if (tecla == 'der') {
     movX = velocidad;
     spriteActual = 'imagenes/auto_rojo_derecha.png';
+    direccion = "h";
   }
   if (tecla == 'abajo') {
     movY = velocidad;
@@ -192,7 +195,7 @@ Juego.capturarMovimiento = function (tecla) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
 
-    this.jugador.mover(movX, movY, spriteActual);
+    this.jugador.mover(movX, movY, spriteActual, direccion);
   }
 };
 
@@ -238,10 +241,10 @@ un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function () {
   this.enemigos.forEach(function (enemigo) {
-    // ZombieConductor.prototype.mover();
+    
     enemigo.mover();
   });
-  };
+};
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
 Si colisiona empieza el ataque el zombie, si no, deja de atacar.

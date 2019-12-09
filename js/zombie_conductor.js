@@ -22,4 +22,10 @@ ZombieConductor.prototype.mover = function () {
   } else {
     this.x += this.velocidad;
   };
+  if (this.x > this.rangoMov.hastaX ) {
+    this.x = -90;
+  };
+  if (this.y > this.rangoMov.hastaY){
+    this.y = -90;
+  };
 };
