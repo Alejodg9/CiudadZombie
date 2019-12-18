@@ -173,21 +173,15 @@ Juego.capturarMovimiento = function (tecla) {
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
-    spriteActual = 'imagenes/auto_rojo_izquierda.png';
-    direccion = "h";
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
-    spriteActual = 'imagenes/auto_rojo_arriba.png';
   }
   if (tecla == 'der') {
     movX = velocidad;
-    spriteActual = 'imagenes/auto_rojo_derecha.png';
-    direccion = "h";
   }
   if (tecla == 'abajo') {
     movY = velocidad;
-    spriteActual = 'imagenes/auto_rojo_abajo.png';
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
@@ -195,7 +189,7 @@ Juego.capturarMovimiento = function (tecla) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
 
-    this.jugador.mover(movX, movY, spriteActual, direccion);
+    this.jugador.mover(movX, movY);
   }
 };
 
@@ -205,7 +199,7 @@ Juego.dibujar = function () {
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
 
-
+  if(this.terminoJuego() || this.ganoJuego()) return;
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
